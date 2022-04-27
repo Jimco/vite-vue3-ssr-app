@@ -1,0 +1,11 @@
+{
+    "packages": ["server", "apps/**", "packages/**"],
+    "version": "independent",
+    "npmClient": "yarn",
+    "useWorkspaces": true,
+    "command": {
+        "publish": {
+            "message": "chore: publish"
+        }
+    }
+}

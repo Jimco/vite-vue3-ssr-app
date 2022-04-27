@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{TITLE}}</title>
+    {{HEAD}}
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=1250" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9,chrome=1" />
+    <!--[if IE]>
+        <script>
+            window.location.replace('/upgrade-browser');
+        </script>
+    <![endif]-->
+    <script>
+        function getBroswer() {
+            var Sys = {};
+            var ua = navigator.userAgent.toLowerCase();
+            var s;
+            (s = ua.match(/edge\/([\d.]+)/))
+                ? (Sys.edge = s[1])
+                : (s = ua.match(/rv:([\d.]+)\) like gecko/))
+                    ? (Sys.ie = s[1])
+                    : (s = ua.match(/msie ([\d.]+)/))
+                        ? (Sys.ie = s[1])
+                        : (s = ua.match(/firefox\/([\d.]+)/))
+                            ? (Sys.firefox = s[1])
+                            : (s = ua.match(/chrome\/([\d.]+)/))
+                                ? (Sys.chrome = s[1])
+                                : (s = ua.match(/opera.([\d.]+)/))
+                                    ? (Sys.opera = s[1])
+                                    : (s = ua.match(/version\/([\d.]+).*safari/))
+                                        ? (Sys.safari = s[1])
+                                        : 0;
+
+            if (Sys.edge) return { broswer: 'Edge', version: Sys.edge.split('.')[0] };
+            if (Sys.ie) return { broswer: 'IE', version: Sys.ie.split('.')[0] };
+            if (Sys.firefox) return { broswer: 'Firefox', version: Sys.firefox.split('.')[0] };
+            if (Sys.chrome) return { broswer: 'Chrome', version: +Sys.chrome.split('.')[0] };
+            if (Sys.opera) return { broswer: 'Opera', version: Sys.opera.split('.')[0] };
+            if (Sys.safari) return { broswer: 'Safari', version: Sys.safari.split('.')[0] };
+        }
+        var data = getBroswer();
+        if (
+            (data && data.broswer === 'Chrome' && data.version <= 48) ||
+            (data.broswer === 'Firefox' && data.version <= 17) ||
+            (data.broswer === 'Safari' && data.version < 10) ||
+            (data.broswer === 'Edge' && data.version < 12)
+        ) {
+            window.location.replace('/upgrade-browser');
+        }
+    </script>
+</head>
+<body>
+    {{BODY}}
+    <script type="module" src="./src/entry-client.ts"></script>
+</body>
+</html>

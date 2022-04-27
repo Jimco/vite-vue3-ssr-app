@@ -1,0 +1,34 @@
+{
+    "name": "vite-ssr-app",
+    "private": true,
+    "version": "1.0.0",
+    "license": "UNLICENSED",
+    "author": "",
+    "description": "",
+    "workspaces": [
+        "server",
+        "apps/**",
+        "packages/**"
+    ],
+    "scripts": {
+        "dev": "npm run watch:packages & nodemon --watch 'server/src/**' --ext 'ts,json' --exec node --max_old_space_size=4096 --inspect --require @zqd/load-es server/src/bootstrap.js",
+        "build": "npm run build:packages && ci-task-runner --config ./scripts/build.js && cd server && npx ncc build src/bootstrap.js -e vite -o ../dist -s",
+        "build:www": "node --require @zqd/load-es ./scripts/build-www.ts",
+        "build:admin": "node --require @zqd/load-es ./scripts/build-admin.ts",
+        "build:packages": "lerna run build --stream",
+        "watch:packages": "lerna run watch --parallel",
+        "publish:beta": "lerna publish --no-commit-hooks --dist-tag beta",
+        "publish:next": "lerna publish --no-commit-hooks --dist-tag next",
+        "start": "NODE_ENV=production node dist/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "devDependencies": {
+        "@types/node": "^16.11.12",
+        "@vercel/ncc": "^0.28.6",
+        "@zqd/load-es": "^0.0.1",
+        "ci-task-runner": "^1.0.4",
+        "lerna": "^4.0.0",
+        "nodemon": "^2.0.15",
+        "typescript": "^4.6.3"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "name": "@zqd/vite-plugin-env",
+    "private": true,
+    "version": "0.0.1",
+    "license": "UNLICENSED",
+    "author": "= <qianjun@gaoding.com>",
+    "description": "Vite 环境变量插件",
+    "main": "src/index.ts",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "vite": "^2.9.6"
+    }
+}
