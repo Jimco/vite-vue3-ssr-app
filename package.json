@@ -11,6 +11,7 @@
         "packages/**"
     ],
     "scripts": {
+        "preinstall": "node --require @zqd/load-es ./scripts/only-allow.ts yarn",
         "dev": "npm run watch:packages & nodemon --watch 'server/src/**' --ext 'ts,json' --exec node --max_old_space_size=4096 --inspect --require @zqd/load-es server/src/bootstrap.js",
         "build": "npm run build:packages && ci-task-runner --config ./scripts/build.js && cd server && npx ncc build src/bootstrap.js -e vite -o ../dist -s",
         "build:www": "node --require @zqd/load-es ./scripts/build-www.ts",

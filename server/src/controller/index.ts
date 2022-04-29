@@ -11,33 +11,43 @@ defineController(async (router) => {
     let adminRender: ReturnType<typeof createRenderPage> | undefined;
 
     // admin app
-    // router.get('/admin/:pathMatch(.*)', async (ctx) => {
-    //     if (!adminRender) {
-    //         adminRender = createRenderPage({
-    //             root: resolve('apps/admin'),
-    //             isDev: process.env.NODE_ENV !== 'production',
-    //             ssr: false,
-    //         });
-    //     }
+    router.get(
+        ['/admin', '/admin/:pathMatch(.*)'],
+        cacheMiddleware({ max: 500, maxAge: 1000 * 60 }),
+        async (ctx) => {
+            if (ctx.path === '/admin') {
+                ctx.redirect('/admin/');
+                ctx.status = 301;
+                return;
+            }
 
-    //     const { middlewares, renderPage } = await adminRender;
+            if (!adminRender) {
+                adminRender = createRenderPage({
+                    root: resolve('apps/admin'),
+                    isDev: process.env.NODE_ENV !== 'production',
+                    ssr: false,
+                });
+            }
 
-    //     await c2k(middlewares)(ctx, () => undefined);
-    //     if (ctx.body) return;
+            const { middlewares, renderPage } = await adminRender;
 
-    //     const { html, status, error, redirect } = await renderPage(ctx.path);
-    //     if (error) {
-    //         throw error;
-    //     }
+            await c2k(middlewares)(ctx, () => undefined);
+            if (ctx.body) return;
 
-    //     ctx.status = status;
+            const { html, status, error, redirect } = await renderPage(ctx.path);
+            if (error) {
+                throw error;
+            }
 
-    //     if (redirect) {
-    //         ctx.redirect(redirect);
-    //     }
+            ctx.status = status;
 
-    //     ctx.body = html;
-    // });
+            if (redirect) {
+                ctx.redirect(redirect);
+            }
+
+            ctx.body = html;
+        }
+    );
 
     // www app
     router.get('/:any(.*)', cacheMiddleware({ max: 500, maxAge: 1000 * 60 }), async (ctx) => {

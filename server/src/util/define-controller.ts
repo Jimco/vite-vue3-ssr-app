@@ -14,5 +14,5 @@ export async function useApp(app: Application) {
     for (const fn of fns) {
         await fn();
     }
-    app.use(router.routes());
+    app.use(router.routes()).use(router.allowedMethods());
 }

@@ -1,4 +1,9 @@
 <template>
+    <naco-head>
+        <title>Home</title>
+        <meta name="description" content="站点描述" />
+        <meta name="keywords" content="关键字1,关键字2,关键字3" />
+    </naco-head>
     <div>
         <router-link to="/">Home</router-link>|
         <router-link to="/about">About</router-link>

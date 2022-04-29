@@ -104,6 +104,9 @@ function renderPreloadLink(file: string): string {
 }
 
 interface Options<T extends boolean> {
+    /**
+     * 是否开发环境
+     */
     isDev: T;
     /**
      * 是否禁止降级渲染
@@ -112,7 +115,13 @@ interface Options<T extends boolean> {
      * @memberof Options
      */
     disabledDemotion?: boolean;
+    /**
+     * 是否 SSR 同构
+     */
     ssr: boolean;
+    /**
+     * 应用根目录
+     */
     root: string;
 }
 

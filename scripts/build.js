@@ -7,8 +7,9 @@ const ciTaskRunnerConfig = {
     tasks: [],
 };
 
-const packagesPath = path.resolve(__dirname, 'packages');
-
+const cwd = process.cwd();
+const appsPath = path.resolve(cwd, 'apps');
+const packagesPath = path.resolve(cwd, 'packages');
 const packages = fs
     .readdirSync(packagesPath)
     .filter((p) => fs.lstatSync(path.join(packagesPath, p)).isDirectory())
@@ -18,8 +19,6 @@ const packages = fs
             path: path.join(packagesPath, p),
         };
     });
-
-const appsPath = path.resolve(__dirname, 'apps');
 
 const buildTasks = fs
     .readdirSync(appsPath)
