@@ -36,6 +36,7 @@ export function ssrRewriteStacktrace(stack: string, moduleGraph: ModuleGraph) {
 
                     const consumer = new SourceMapConsumer(rawSourceMap as any as RawSourceMap);
 
+                    // @ts-ignore
                     const pos = consumer.originalPositionFor({
                         line: Number(line) - offset,
                         column: Number(column) - 6,

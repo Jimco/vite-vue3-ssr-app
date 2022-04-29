@@ -30,7 +30,7 @@ export async function build(root: string = process.cwd(), ssr = true) {
             ssr: true,
             target: 'es6',
             rollupOptions: {
-                input: path.resolve(root, 'entry-server.ts'),
+                input: path.resolve(root, 'src', 'entry-server.ts'),
                 output: {
                     format: 'esm',
                     dir: path.resolve(root, 'dist', 'server'),

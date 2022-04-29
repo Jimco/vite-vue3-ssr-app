@@ -34,9 +34,9 @@ const buildTasks = fs
 
         let buildTask = {
             name: `build_${name}`,
-            path: `apps/${name}/`,
+            path: `../apps/${name}/`,
             dependencies: dependencies,
-            program: `node --require load-es scripts/build-${name}.ts`,
+            program: `node --require @zqd/load-es scripts/build-${name}.ts`,
         };
 
         return buildTask;
