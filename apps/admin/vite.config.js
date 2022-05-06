@@ -7,7 +7,7 @@ import ssrPlugin from '@zqd/naco/src/plugin';
 // import styleImport from 'vite-plugin-style-import';
 
 export default defineConfig((env) => ({
-    base: env.command === 'build' ? 'https://cdn.dancf.com/open-platform/' : '/admin/',
+    base: env.command === 'build' ? 'https://static.zqianduan.com/vite-ssr/admin/' : '/admin/',
 
     define: {
         'process.env.NODE_ENV': JSON.stringify(

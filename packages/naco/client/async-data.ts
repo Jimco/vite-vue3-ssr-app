@@ -16,7 +16,8 @@ export function useAsyncData<T>(initDataFn: () => Promise<T>, options: { initDat
     const data = ref<T>(options.initData);
     const loading = ref(false);
     const instance = getCurrentInstance();
-    const cacheKey = 'I_' + (instance.type as any).id + '_K_' + instance.vnode.key;
+    // const cacheKey = 'I_' + (instance.type as any).id + '_K_' + instance.vnode.key;
+    const cacheKey = `I_${(instance.type as any).id}_K_${String(instance.vnode.key)}`;
     const nacoData = useNacoData();
 
     if (!nacoData.asyncData) {
