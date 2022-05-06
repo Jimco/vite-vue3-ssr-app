@@ -11,6 +11,7 @@ const c = cors({
 
 async function bootstrap() {
     const app = new Koa();
+    const port = process.env.PORT || 80;
 
     app.use(Static('server/public', { extensions: ['html'] }));
     app.use(providerContext);
@@ -28,10 +29,13 @@ async function bootstrap() {
         }
     });
 
+    // 路由载入
     await useApp(app);
-    app.listen(process.env.PORT, () => {
-        console.log(`http://localhost:${process.env.PORT}`);
+
+    app.listen(port, () => {
+        console.log(`http://localhost:${port}`);
     });
+
     process.on('uncaughtException', (error) => {
         console.error(error);
     });
