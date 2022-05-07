@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "strict": false,
+        "jsx": "preserve",
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "downlevelIteration": true,
+        "emitDecoratorMetadata": true,
+        "outDir": "./lib",
+        "rootDir": "./src",
+        "experimentalDecorators": true,
+        "newLine": "LF",
+        "skipLibCheck": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "suppressExcessPropertyErrors": true,
+        "forceConsistentCasingInFileNames": true,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "stripInternal": true
+    }
+}
