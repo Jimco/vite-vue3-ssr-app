@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import logger from './logger';
 import Uploader from './alioss';
 
+// 从执行根目录读取 .env 中的 OSS 配置
 dotenv.config({
     path: path.resolve(process.cwd(), '.env'),
 });
