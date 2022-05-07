@@ -34,18 +34,18 @@ async function upload() {
 
     if (!Object.keys(statics).length) {
         logger.error(`Assets is Empty.`);
-        process.exitCode = 1;
+        process.exit(1);
     }
 
     const result = await uploader.uploadFiles(statics);
 
     if (result.error) {
-        logger.error(`Failed to upload some resources:\n${result.errorFiles.join('\n')}`);
-        process.exitCode = 1;
+        logger.error(`Failed to upload some resources.`);
+        process.exit(1);
     }
 
     logger.success('All resources are uploaded!');
-    process.exitCode = 0;
+    process.exit(0);
 }
 
 upload();
