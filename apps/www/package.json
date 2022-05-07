@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "license": "UNLICENSED",
     "dependencies": {
-        "@zqd/naco": "^0.0.1",
+        "@zqd/naco": "workspace:^",
         "axios": "^0.27.1",
         "vue": "3.2.33",
         "vue-router": "^4.0.14"
@@ -15,7 +15,7 @@
         "@vitejs/plugin-vue-jsx": "^1.3.10",
         "@vue/compiler-sfc": "3.2.33",
         "@vue/server-renderer": "3.2.33",
-        "@zqd/vite-plugin-env": "^0.0.1",
+        "@zqd/vite-plugin-env": "workspace:^",
         "vite": "^2.9.5",
         "vite-plugin-style-import": "^2.0.0"
     }
