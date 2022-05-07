@@ -1,7 +1,19 @@
-const path = require('path');
-const fg = require('fast-glob');
-const uploader = require('./alioss');
-const logger = require('./logger');
+import path from 'path';
+import fg from 'fast-glob';
+import dotenv from 'dotenv';
+import logger from './logger';
+import Uploader from './alioss';
+
+dotenv.config({
+    path: path.resolve(process.cwd(), '.env'),
+});
+
+const uploader = new Uploader({
+    region: process.env.OSS_REGION,
+    bucket: process.env.OSS_BUCKET,
+    accessKeyId: process.env.OSS_ACCESS_ID,
+    accessKeySecret: process.env.OSS_ACCESS_SECRET,
+});
 
 async function upload() {
     const apps = ['www', 'admin'];

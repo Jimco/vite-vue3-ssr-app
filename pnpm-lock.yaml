@@ -12,6 +12,7 @@ importers:
       ali-oss: ^6.17.1
       chalk: ^4.1.2
       ci-task-runner: ^1.0.4
+      dotenv: ^10.0.0
       fast-glob: ^3.2.11
       nodemon: ^2.0.15
       typescript: ^4.6.3
@@ -24,6 +25,7 @@ importers:
       ali-oss: 6.17.1
       chalk: 4.1.2
       ci-task-runner: 1.0.4
+      dotenv: 10.0.0
       fast-glob: 3.2.11
       nodemon: 2.0.16
       typescript: 4.6.4
@@ -1942,7 +1944,6 @@ packages:
   /dotenv/10.0.0:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
     engines: {node: '>=10'}
-    dev: false
 
   /duplexer3/0.1.4:
     resolution: {integrity: sha512-CEj8FwwNA4cVH2uFCoHUrmojhYh1vmCdOaneKJXwkeY1i9jnlslVo9dx+hQ5Hl9GnH/Bwy/IjxAyOePyPKYnzA==}

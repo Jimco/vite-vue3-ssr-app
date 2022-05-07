@@ -1,6 +1,9 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
-class Logger {
+export class Logger {
+
+    options: Record<string, any>;
+
     constructor(options = {}) {
         this.setOptions(options);
     }
@@ -50,4 +53,4 @@ class Logger {
     }
 }
 
-module.exports = new Logger();
+export default new Logger();

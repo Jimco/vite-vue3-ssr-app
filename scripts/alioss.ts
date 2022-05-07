@@ -1,10 +1,17 @@
-"use strict";
+import OSS from 'ali-oss';
+import logger from './logger';
 
-const OSS = require('ali-oss');
-const logger = require('./logger');
+interface IOssOptions {
+    region: string;
+    bucket: string;
+    accessKeyId: string;
+    accessKeySecret: string;
+}
 
-class Uploader {
-    constructor(options = {}) {
+export default class Uploader {
+    client: any;
+
+    constructor(options: IOssOptions) {
         const requireParams = ['region', 'bucket', 'accessKeyId', 'accessKeySecret'];
 
         for (let i = 0; i < requireParams.length; i++) {
@@ -23,7 +30,7 @@ class Uploader {
      * @param  {String} path: 上传对象绝对路径
      * @param  {Boolean} force: 是否覆盖上传（默认 false）
      */
-    async uploadFile(key, path, force = false) {
+    async uploadFile(key: string, path: string, force = false) {
         const uploadErrors = [];
         try {
             if (force) {
@@ -54,7 +61,7 @@ class Uploader {
      * @param {Object} statics 待上传资源表 { key: value }
      * @param {Boolean} force 是否覆盖上传（默认 false）
      */
-    async uploadFiles(statics, force = false) {
+    async uploadFiles(statics: Record<string, string>, force = false) {
         const uploadErrors = [];
 
         for (const key in statics) {
@@ -101,7 +108,7 @@ class Uploader {
      * @param {String} localFile
      * @returns
      */
-    async getFile(objName, localFile) {
+    async getFile(objName: string, localFile: string) {
         try {
             const result = await this.client.get(objName, localFile);
 
@@ -117,7 +124,7 @@ class Uploader {
      * @param {Object} statics
      * @returns
      */
-    async deleteFiles(statics) {
+    async deleteFiles(statics: Record<string, string>) {
         const delErrors = [];
 
         for (const key in statics) {
@@ -145,7 +152,7 @@ class Uploader {
         let params = obj || {};
 
         try {
-            const result = await client.list(params);
+            const result = await this.client.list(params);
             return result;
         } catch (err) {
             logger.error(`${err.name} 查看文件列表失败，请检查 OSS 配置。`);
@@ -153,14 +160,3 @@ class Uploader {
         }
     }
 }
-
-module.exports = new Uploader({
-    // region: process.env.OSS_REGION,
-    // bucket: process.env.OSS_BUCKET,
-    // accessKeyId: process.env.OSS_ACCESS_ID,
-    // accessKeySecret: process.env.OSS_ACCESS_SECRET,
-    region: 'oss-cn-hongkong',
-    bucket: 'color7-public-hk',
-    accessKeyId: 'LTAI5tJr8UFs6x8mENTa9mGu',
-    accessKeySecret: 'HHk903yywXfx8sSgsrGGmvEGxJ85fo',
-});
