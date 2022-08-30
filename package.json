@@ -8,7 +8,7 @@
     "scripts": {
         "preinstall": "node --require @zqd/load-es ./scripts/only-allow.ts pnpm",
         "dev": "pnpm run watch:packages & nodemon --watch 'server/src/**' --ext 'ts,json' --exec node --max_old_space_size=4096 --inspect --require @zqd/load-es server/src/bootstrap.js",
-        "watch:packages": "pnpm run watch --filter=@zqd --parallel",
+        "watch:packages": "pnpm --filter=@zqd/load-es --parallel watch",
         "build": "pnpm run build:packages && ci-task-runner --config ./scripts/build.js && cd server && npx ncc build src/bootstrap.js -e vite -o ../dist -s",
         "build:www": "node --require @zqd/load-es ./scripts/build-www.ts",
         "build:admin": "node --require @zqd/load-es ./scripts/build-admin.ts",
