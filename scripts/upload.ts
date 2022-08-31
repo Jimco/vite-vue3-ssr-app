@@ -40,7 +40,7 @@ async function upload() {
 
     const result = await uploader.uploadFiles(statics);
 
-    if (result.error) {
+    if (result && result.error) {
         logger.error(`Failed to upload some resources.`);
         process.exit(1);
     }

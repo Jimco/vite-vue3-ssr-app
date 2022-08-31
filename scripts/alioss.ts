@@ -31,7 +31,7 @@ export default class Uploader {
      * @param  {Boolean} force: 是否覆盖上传（默认 false）
      */
     async uploadFile(key: string, path: string, force = false) {
-        const uploadErrors = [];
+        const uploadErrors = [] as Record<string, string>[];
         try {
             if (force) {
                 // 主动抛错，全覆盖式上传

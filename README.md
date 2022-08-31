@@ -86,6 +86,14 @@ docker build -t @jimcox/vite-ssr
 | `pnpm run publish:next` | 发包，指定 tag 为 next |
 
 
+<!--
+发包流程：
+
+1. `pnpm run change` 填写变更集
+2. `pnpm run ver:pkgs` 消耗变更集
+3. `pnpm run publish:beta` / `pnpm run publish:next` 正式发包（with beta/next tag）
+-->
+
 ## 参考文档
 
 - [Koa](https://koajs.docschina.org/)
